@@ -1,0 +1,15 @@
+﻿<section ng-template="/ng-common/directives/ngCalendar.tmpl.html">
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               datepicker-popup="{{format}}"
+               ng-model="dt"
+               show-weeks="false"
+               show-button-bar="false"
+               placeholder="{{format}}"
+               is-open="opened" />
+        <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="open($event)" tabindex="-1"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+    </div>
+</section>

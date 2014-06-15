@@ -1,0 +1,37 @@
+{
+  "name": "ng-common-extensions",
+  "version": "0.0.0",
+  "description": "Common angular extenions",
+  "keywords": [
+    "angular",
+    "helper",
+    "extensions"
+  ],
+  "authors": [
+    "rkrdovrgs"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/rkrdovrgs/ng-common-extensions",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "angular-ui": "~0.4",
+    "angular-ui-bootstrap": "~0.10.0",
+    "angular": "~1.2.2",
+    "bootstrap": "~3.0.1",
+    "jquery-ui": "~1.10.4",
+    "jquery-placeholder": "~2.0.7",
+    "ng-grid": "~2.0.11",
+    "spinjs": "~2.0",
+    "toastr": "~2.0.3"
+  },
+  "resolutions": {
+    "jquery": "~2.1.1"
+  }
+}

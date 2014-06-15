@@ -1,0 +1,16 @@
+﻿<section ng-template="/ng-common/directives/defaultPagination.tmpl.html">
+    <div ng-show="pagingOptions.totalItems >= pagingOptions.pageSize">
+        <div pagination
+             total-items="pagingOptions.totalItems"
+             page="pagingOptions.currentPage"
+             items-per-page="itemsPerPage"
+             max-size="0"
+             num-pages="pagingOptions.numPages"
+             next-text=">"
+             previous-text="<"
+             first-text="<<"
+             last-text=">>"
+             boundary-links="true"
+             on-select-page="pagingOptions.onSelectPage(page)"></div>
+    </div>
+</section>

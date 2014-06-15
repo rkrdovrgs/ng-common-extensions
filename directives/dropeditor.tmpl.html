@@ -1,0 +1,27 @@
+﻿<section ng-template="/ng-common/directives/dropeditor.tmpl.html">
+    <div ng-switch="dropEditor['{0}'].viewMode">
+        <div ng-switch-when="display">
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon x-input-group-addon-sm" ng-click="dropEditor['{0}'].btnAddClick()">
+                    <i class="glyphicon glyphicon-plus"></i>
+                </span>
+                <span class="input-group-addon x-input-group-addon-sm" ng-click="dropEditor['{0}'].btnEditClick()">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                </span>
+                <select ng-options="opt.value as opt.text for opt in dropEditor['{0}'].collection" ng-model="{1}"></select>
+            </div>
+        </div>
+        <div ng-switch-when="edit">
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon x-input-group-addon-sm" ng-click="dropEditor['{0}'].btnCancelClick()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </span>
+                <span class="input-group-addon x-input-group-addon-sm" ng-click="dropEditor['{0}'].btnSaveClick()">
+                    <i class="glyphicon glyphicon-floppy-disk"></i>
+                </span>
+                <input class="x-input-sm" type="text" ng-model="dropEditor['{0}'].itemToUpdate.text" />
+
+            </div>
+        </div>
+    </div>
+</section>

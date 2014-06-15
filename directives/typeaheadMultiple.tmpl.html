@@ -1,0 +1,39 @@
+﻿<section ng-template="/ng-common/directives/typeaheadMultiple.tmpl.html">
+    <ul class="typeahead-multiple list-inline" style="background-color: white; border: solid 1px #E2E2E2; cursor:text">
+        <li ng-click="$$removeAll()"
+            class="btn btn-sm btn-default"
+            style="margin-left:3px; padding-left:5px"
+            ng-show="$$selectedValues.length > 1 && !$$hideClearButton"
+            ng-disabled="$$disabled">
+            Clear
+            <i class="glyphicon glyphicon-remove"></i>
+        </li>
+        <li ng-repeat="sv in selectedValuesToDisplay()"
+            ng-click="$$removeSelectedValue($index)"
+            class="btn btn-sm {{sv[$$classProperty] || 'btn-default'}}"
+            style="margin-left:3px; padding-left:5px"
+            ng-disabled="$$disabled">
+            <i class="badge" ng-show="sv[$$categoryProperty]"> {{ sv[$$categoryProperty] }} </i>
+            {{ sv[$$textProperty] }}
+            <i class="glyphicon glyphicon-remove"></i>
+        </li>
+        <li ng-hide="$$maxReached()">
+            <input type="text"
+                   ng-disabled="$$disabled"
+                   data-role="typeahead-multiple"
+                   style="border:none"
+                   ng-model="$$taSelectedValue"
+                   typeahead-on-select="$$pushSelectedValue()"
+                   typeahead-editable="false"
+                   typeahead-wait-ms="250"
+                   typeahead-min-length="0"
+                   placeholder="{{$$placeholder}}"
+                   typeahead="value as value[$$textProperty] for value in $$source($viewValue) | filter:$viewValue">
+        </li>
+        <li class="action-buttons" style="float: right; position: relative; top: 3px;">
+            <i class="glyphicon glyphicon-search"></i>
+        </li>
+    </ul>
+</section>
+
+
