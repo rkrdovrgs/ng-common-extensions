@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>ng-common-extensions</id>
+		<version>0.0.1</version>
+		<title>ng-common-extensions</title>
+		<authors>rkrdovrgs</authors>
+		<owners>Ricardo Vargas</owners>
+		<description>
+			A long description of the package. This shows up in the right pane of the Add Package Dialog as well as in the Package Manager Console when listing packages using the Get-Package command.
+		</description>
+		<releaseNotes>
+		</releaseNotes>
+		<summary>
+			A short description of the package. If specified, this shows up in the middle pane of the Add Package Dialog. If not specified, a truncated version of the description is used instead.
+		</summary>
+		<language>en-US</language>
+		<projectUrl>https://github.com/rkrdovrgs/ng-common-extensions</projectUrl>
+		<iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+		<copyright></copyright>
+		<dependencies>
+			<group targetFramework="net40">
+				<dependency id="Angular.UI" version="0.4"  />
+				<dependency id="Angular.UI.Bootstrap" version="0.10.1"  />
+				<dependency id="angularjs" version="1.2.16"  />
+				<dependency id="jQuery" version="2.1.1"  />
+				<dependency id="jQuery.UI.Combined" version="1.10.4"  />
+				<dependency id="jquery-placeholder" version="2.0.7"  />
+				<dependency id="linq.js" version="2.2.0.2"  />
+				<dependency id="ng-grid" version="2.0.11"  />
+				<dependency id="Spin.js" version="2.0"  />
+				<dependency id="toastr" version="2.0.3"  />
+				<dependency id="Twitter.Bootstrap" version="3.0.1.1"  />
+			</group>
+		</dependencies>
+		<references></references>
+		<tags>AngularJs, Javascript</tags>
+	</metadata>
+	<files>
+		<file src="**" 
+			target="content\Scripts\ng-common-extensions\"
+			exclude="bower.json;nuget.exe;README.md;node_modules;bower_components"/>
+	</files>
+</package>
