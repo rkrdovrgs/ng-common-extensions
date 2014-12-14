@@ -1,0 +1,8 @@
+﻿<section ng-template="/ng-common-extensions/templates/radioButtonList.tmpl.html">
+    <ul class="radio-button-list" ng-class="{inline:inline}">
+        <li ng-repeat="opt in options" ng-click="setSelectedValue(opt)">
+            <input type="radio" ng-value="opt.value" name="{{groupName}}" ng-checked="opt.value == model.value" />
+            {{ opt.text }}
+        </li>
+    </ul>
+</section>

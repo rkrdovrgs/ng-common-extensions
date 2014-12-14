@@ -1,0 +1,33 @@
+﻿<section ng-template="/ng-common-extensions/templates/autocomplete.tmpl.html">
+    <ul class="typeahead-multiple list-inline" style="background-color: white; border: solid 1px #E2E2E2; cursor:text">
+        <li ng-click="$$removeAll()"
+            class="btn btn-sm btn-default"
+            style="margin-left:3px; padding-left:5px"
+            ng-show="$$selectedValues.length > 1 && !$$hideClearButton"
+            ng-disabled="$$disabled">
+            Clear
+            <i class="glyphicon glyphicon-remove"></i>
+        </li>
+        <li ng-repeat="sv in selectedValuesToDisplay()"
+            ng-click="$$removeSelectedValue($index)"
+            class="btn btn-sm {{sv[$$classProperty] || 'btn-default'}} selected-value"
+            style="margin-left:3px; padding-left:5px"
+            ng-disabled="$$disabled">
+            {{ sv[$$textProperty] }}
+            <i class="glyphicon glyphicon-remove"></i>
+        </li>
+        <li ng-hide="$$maxReached()">
+            <input type="text"
+                   ng-disabled="$$disabled"
+                   data-role="typeahead-multiple"
+                   style="border:none"
+                   placeholder="{{$$placeholder}}">
+        </li>
+        <li class="action-buttons">
+            <spinner top="8px" left="-3px"></spinner>
+            <i class="glyphicon glyphicon-chevron-down"></i>
+        </li>
+    </ul>
+</section>
+
+

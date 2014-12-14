@@ -12,7 +12,7 @@
         var directive = {
             link: link,
             restrict: 'EA',
-            templateUrl: '/ng-common/directive.controlField.tmpl.html',
+            templateUrl: '/ng-common-extensions/templates/controlField.tmpl.html',
             scope: {
                 controlModel: '=controlModel',
                 controlField:'=controlField',

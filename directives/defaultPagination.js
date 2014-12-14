@@ -15,7 +15,7 @@
             scope: {
                 pagingOptions: "=defaultPagination"
             },
-            templateUrl: '/ng-common/directives/defaultPagination.tmpl.html'
+            templateUrl: '/ng-common-extensions/templates/defaultPagination.tmpl.html'
         };
         return directive;
 

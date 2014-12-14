@@ -18,8 +18,9 @@
                     element.click(function () {
                         scope.$apply(function () {
                             var ref = '';
+                            
                             if (attrs.ngHref.startsWith('#'))
-                                $location.path(attrs.ngHref.substring(1));
+                                $window.location.hash = attrs.ngHref.substring(1);
                             else
                                 $window.location.href = attrs.ngHref;
 

@@ -1,6 +1,8 @@
-﻿<section ng-template="/ng-common/directives/ngCalendar.tmpl.html">
+﻿<section ng-template="/ng-common-extensions/templates/ngCalendar.tmpl.html">
     <div class="input-group">
         <input type="text"
+               ng-change="updateDate(dt, $event)"
+               ng-readonly="ngReadonly"
                class="form-control"
                datepicker-popup="{{format}}"
                ng-model="dt"

@@ -1,0 +1,25 @@
+﻿/*
+
+.validation-control-field i.glyphicon.validation-sign {
+    display: none;
+}
+
+.has-error .validation-control-field {
+    input.control-field, textarea.control-field, select.control-field, div.control-field input {
+        padding-left: 20px !important;
+    }
+}
+*/
+.validation-sign {
+  color: #A94442;
+  cursor: pointer;
+  margin-left: 5px;
+  font-size: 12px;
+}
+.popover-content {
+  white-space: pre-wrap;
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  font-style: italic;
+}

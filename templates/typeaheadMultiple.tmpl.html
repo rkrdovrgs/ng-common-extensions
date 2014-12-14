@@ -1,4 +1,4 @@
-﻿<section ng-template="/ng-common/directives/typeaheadMultiple.tmpl.html">
+﻿<section ng-template="/ng-common-extensions/templates/typeaheadMultiple.tmpl.html">
     <ul class="typeahead-multiple list-inline" style="background-color: white; border: solid 1px #E2E2E2; cursor:text">
         <li ng-click="$$removeAll()"
             class="btn btn-sm btn-default"
@@ -26,12 +26,15 @@
                    typeahead-on-select="$$pushSelectedValue()"
                    typeahead-editable="false"
                    typeahead-wait-ms="250"
-                   typeahead-min-length="0"
+                   typeahead-min-length="'0'"
+                   typeahead-loading="$$loadingValues"
+                   typeahead-dropdown
                    placeholder="{{$$placeholder}}"
-                   typeahead="value as value[$$textProperty] for value in $$source($viewValue) | filter:$viewValue">
+                   typeahead="value as value[$$textProperty] for value in $$source($viewValue)">
         </li>
-        <li class="action-buttons" style="float: right; position: relative; top: 3px;">
-            <i class="glyphicon glyphicon-search"></i>
+        <li class="action-buttons" style="float: right; position: relative; top: 3px; cursor:pointer">
+            <spinner top="8px" left="-3px" ng-show="$$loadingValues"></spinner>
+            <i class="glyphicon glyphicon-chevron-down" ng-hide="$$loadingValues"></i>
         </li>
     </ul>
 </section>

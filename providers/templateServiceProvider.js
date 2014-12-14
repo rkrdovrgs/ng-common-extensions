@@ -110,6 +110,17 @@
                     $templateCache.put(baseName, x.html());
                 });
             });
+
+            angular.element('script[type="text/html"]').each(function () {
+                var $data = angular.element('<div/>');
+                $data.append(angular.element(this).html());
+
+                $data.find('script[data-ng-template], script[ng-template], section[data-ng-template], section[ng-template]').each(function () {
+                    var x = $(this),
+                        baseName = x.attr('data-ng-template') || x.attr('ng-template');
+                    $templateCache.put(baseName, x.html());
+                });
+            });
         }
     }
 })();

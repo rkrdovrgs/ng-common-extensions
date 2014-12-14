@@ -29,7 +29,7 @@
         function link(scope, element, attrs, ngModel) {
 
             $http({
-                url: '/ng-common/directives/dropeditor.tmpl.html',
+                url: '/ng-common-extensions/templates/dropeditor.tmpl.html',
                 cache: $templateCache,
                 method: 'GET'
             }).then(function (resp) {

@@ -46,38 +46,50 @@
 
         function resolve(promises, message, onSuccessMessage, onErrorMessage) {
             message = message || 'Processing your request. Please wait!';
-            var n = loading(message);
+            var n = loading(message),
+                deferred = $q.defer();
 
             var promise = $q.all(promises).then(
                 function () {
                     n.remove();
                     if (onSuccessMessage)
                         service.info(onSuccessMessage);
+                    deferred.resolve.apply(this, arguments);
                 },
                 function () {
                     n.remove();
                     onErrorMessage = onErrorMessage || 'There was an error while processing your request.';
                     service.error(onErrorMessage);
+                    deferred.reject.apply(this, arguments);
                 });
 
             return {
-                $promise: promise,
+                $promise: deferred.promise,
                 $n: n,
-            }
+            };
         }
 
 
         function activateController(promises) {
             var activate,
-                config = {};
+                config = {},
+                validPromises = [];
+            angular.forEach(promises, function (p) {
+                if (p && p.then) validPromises.push(p);
+            });
+
             if (Object.isFunction(arguments[1]))
                 activate = arguments[1];
             else {
                 config = arguments[1];
                 activate = config.activate;
             }
-            var nObj = resolve(promises, config.message, config.onSuccessMessage, config.onErrorMessage)
-            common.activateController(nObj.$promise, activate);
+
+
+            
+            var p = common.activateController(validPromises, activate);
+            var nObj = resolve(p, config.message, config.onSuccessMessage, config.onErrorMessage);
+            return nObj.$promise;
         }
     }
 

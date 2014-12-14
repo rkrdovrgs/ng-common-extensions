@@ -4,11 +4,10 @@
     var serviceId = 'autocompleteService';
 
     // TODO: replace app with your module name
-    angular.module('ngCommonExtensions').factory(serviceId, ['$http', autocompleteService]);
+    angular.module('ngCommonExtensions').factory(serviceId, ['$http', '$q', autocompleteService]);
 
-    function autocompleteService($http) {
-        // Define the functions and properties to reveal.
-        return autocompleteService;
+    function autocompleteService($http, $q) {
+        var auRequestCanceler = {};        
 
         //#region Internal Methods        
         function autocompleteService(configs) {
@@ -20,16 +19,32 @@
             });
         }
 
+
+        
         function autocompleteRequest(url, term) {
+            if (!Object.isNullOrUndefined(auRequestCanceler[url])) {
+                auRequestCanceler[url].resolve();
+            }
+
+            auRequestCanceler[url] = $q.defer();
             return $http.get(url, {
                 params: {
-                    $filter: String.format("substringof('{0}', Text) eq true", term)
-                }
+                    $filter: String.format("substringof('{0}', Text) eq true", term),
+                    term: term
+                },
+                cache: true,
+                timeout: auRequestCanceler[url].promise
             })
             .then(function (resp) {
+                auRequestCanceler[url] = undefined;
                 return resp.data;
             });
         }
         //#endregion
+
+
+
+
+        return autocompleteService;
     }
 })();

@@ -1,4 +1,10 @@
-﻿.spacer-top {
+﻿/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+.spacer-top {
   margin-top: 25px;
 }
 .divider-top {
@@ -10,12 +16,74 @@
   margin-left: 25px;
   display: inline;
 }
-.has-error .validation-control-field i.glyphicon.validation-sign {
-  cursor: pointer;
-  display: inline-block;
-  margin-left: 5px;
-  position: absolute;
-  top: 7px;
-  z-index: 5;
+.typeahead-multiple {
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-background-clip: padding-box;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
 }
-/*# sourceMappingURL=ng-common.css.map */
+.typeahead-multiple input[data-role="typeahead-multiple"] {
+  width: auto;
+}
+.typeahead-multiple li.action-buttons {
+  float: right;
+  position: relative;
+  top: 3px;
+  cursor: pointer;
+}
+.ui-autocomplete.ui-widget {
+  max-height: 200px;
+  overflow-y: auto;
+  width: 250px;
+  font-size: 12px;
+  font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+}
+.ui-autocomplete-loading-center {
+  background: url('data:image/gif;base64,R0lGODlhEAALAPQAAP///wdJhtrk7NHd6Orv9AxNiAdJhjNpm4Wlw2SNs7vN3Shhlk59qI2rx2iQtb/Q3ytklwpLh1KAqubs8tni7PT2+T1woNzl7fL1+LfK26K70cvY5e7y9gAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCwAAACwAAAAAEAALAAAFLSAgjmRpnqSgCuLKAq5AEIM4zDVw03ve27ifDgfkEYe04kDIDC5zrtYKRa2WQgAh+QQJCwAAACwAAAAAEAALAAAFJGBhGAVgnqhpHIeRvsDawqns0qeN5+y967tYLyicBYE7EYkYAgAh+QQJCwAAACwAAAAAEAALAAAFNiAgjothLOOIJAkiGgxjpGKiKMkbz7SN6zIawJcDwIK9W/HISxGBzdHTuBNOmcJVCyoUlk7CEAAh+QQJCwAAACwAAAAAEAALAAAFNSAgjqQIRRFUAo3jNGIkSdHqPI8Tz3V55zuaDacDyIQ+YrBH+hWPzJFzOQQaeavWi7oqnVIhACH5BAkLAAAALAAAAAAQAAsAAAUyICCOZGme1rJY5kRRk7hI0mJSVUXJtF3iOl7tltsBZsNfUegjAY3I5sgFY55KqdX1GgIAIfkECQsAAAAsAAAAABAACwAABTcgII5kaZ4kcV2EqLJipmnZhWGXaOOitm2aXQ4g7P2Ct2ER4AMul00kj5g0Al8tADY2y6C+4FIIACH5BAkLAAAALAAAAAAQAAsAAAUvICCOZGme5ERRk6iy7qpyHCVStA3gNa/7txxwlwv2isSacYUc+l4tADQGQ1mvpBAAIfkECQsAAAAsAAAAABAACwAABS8gII5kaZ7kRFGTqLLuqnIcJVK0DeA1r/u3HHCXC/aKxJpxhRz6Xi0ANAZDWa+kEAA7AAAAAAAAAAAA') no-repeat center center;
+  height: 15px;
+  margin-bottom: 5px;
+  display: block;
+}
+/*#region Toastr overrides*/
+.toast-top-right {
+  top: 25px;
+  right: 25px;
+}
+#toast-container .toast {
+  min-height: 70px;
+}
+#toast-container > .toast-loading {
+  position: relative;
+}
+#toast-container > .toast-loading .spinner {
+  position: absolute;
+  left: 25px !important;
+  top: 40px !important;
+}
+.toast-loading {
+  background-color: #335470;
+}
+/*#endregion*/
+.radio-button-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+.radio-button-list input {
+  width: 10px;
+}
+.radio-button-list.inline li {
+  margin-right: 15px;
+  width: auto;
+  display: inline-block;
+}
