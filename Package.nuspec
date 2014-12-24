@@ -2,7 +2,7 @@
 <package>
 	<metadata>
 		<id>ng-common-extensions</id>
-		<version>0.0.2</version>
+		<version>0.0.2.1</version>
 		<title>ng-common-extensions</title>
 		<authors>rkrdovrgs</authors>
 		<owners>Ricardo Vargas</owners>

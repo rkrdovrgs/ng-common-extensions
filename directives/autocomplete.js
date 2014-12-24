@@ -17,14 +17,19 @@
                         $$hideClearButton: '=hideClearButton',
                         $$minLength: '=minLength',
                         $$onSelect: '=onSelect',
+                        $$beforeSelect: '=beforeSelect',
                         $$beforeSearch: '=beforeSearch',
                         $$name: '@name',
                         $$editable: '=editable',
-                        $$disabled: '=ngDisabled'
+                        $$disabled: '=ngDisabled',
+                        $$allowNew: '=allowNew'
                     },
                     replace: true,
                     templateUrl: '/ng-common-extensions/templates/autocomplete.tmpl.html'
-                };
+                },
+                newValsCounter = 0,
+                aucache = {};
+
                 return directive;
 
                 function link(scope, element, attrs) {
@@ -58,7 +63,6 @@
                                 auDropIcon.show();
                             }
                         },
-                        aucache = {},
                         currentTerm = '',
                         isSearching = false,
                         getAuMenu = function () {
@@ -75,18 +79,19 @@
                                     if (v.Text.toLowerCase().indexOf(request.term.toLowerCase()) !== -1)
                                         resp.push(v);
                                 });
+
                                 response(resp);
                                 return;
                             }
 
 
-
                             var term = request.term,
                                 pp = request.pp || 1,
-                                aukey = (scope.$$source || '') + term + '_' + pp.toString();
-
+                                scopeKey = angular.isFunction(scope.$$source) ? attrs.src : scope.$$source,
+                                aukey = (scope.$$cacheKey || scopeKey) + term + '_' + pp.toString();
 
                             if (aukey in aucache) {
+
                                 response(aucache[aukey]);
                                 return;
                             }
@@ -96,6 +101,26 @@
 
                             var onSuccess = function (data) {
                                 currentTerm = term;
+                                if (scope.$$allowNew && !String.isNullOrEmpty(currentTerm)
+                                    && !Enumerable.From(data).Any(function (x) { return x[attrs.textProperty].toLowerCase() === currentTerm.toLowerCase(); })) {
+
+
+                                    var newValue = {
+                                        IsNew: true,
+                                        AddToCache: function (value) {
+                                            newValue.IsNew = false;
+                                            newValue[attrs.valueProperty] = value;
+                                        }
+                                    }
+
+                                    newValsCounter--;
+                                    newValue[attrs.valueProperty] = newValsCounter;
+                                    newValue[attrs.textProperty] = currentTerm;
+
+
+                                    data.push(newValue);
+                                }
+
                                 aucache[aukey] = data;
                                 response(data);
                                 toggleIcon(false);
@@ -145,7 +170,9 @@
                                         scope.$$selectedValues = ui.item;
 
                                     if (scope.$$onSelect)
-                                        scope.$$onSelect(scope.$$selectedValues, au);
+                                        scope.$$onSelect(scope.$$selectedValues, au, event, ui);
+
+                                    //if (ui.item.IsNew) ui.item.AddToCache();
                                 });
 
 
@@ -306,9 +333,15 @@
                     au.val('');
 
                     au.data("ui-autocomplete")._renderItem = function (ul, item) {
+
+                        var anc = "<a>" + highlightUiItem(item) + "</a>";
+                        if (item.IsNew) {
+                            anc = "<a class='inner-content-ng'><label class='btn btn-xs btn-primary' style='width:100%;text-align:left'>" +
+                                "<i class='glyphicon glyphicon-plus'></i> " + highlightUiItem(item) + "</label></a>";
+                        }
                         return $("<li>")
                             .data("item.autocomplete", item)
-                            .append("<a>" + highlightUiItem(item) + "</a>")
+                            .append(anc)
                             .appendTo(ul);
                     }
 
@@ -327,7 +360,8 @@
                     }
 
                     scope.$$removeAll = function () {
-                        scope.$$selectedValues = [];
+                        scope.$$selectedValues = Enumerable.From(scope.$$selectedValues)
+                            .Where(function (x) { return x.Disabled; }).ToArray();
                         au.focus();
                     }
 
